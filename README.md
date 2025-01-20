@@ -1,2 +1,7 @@
 # apps
-This repo hosts a script to automate the setup of a bunch of tools.  I don't like clicky clicky typey typey.
+This is a loader to install tools and dependencies.
+
+# Usage
+```bash
+curl -k https://raw.githubusercontent.com/DockrManhattn/apps/refs/heads/main/setup | bash
+```

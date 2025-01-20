@@ -1,0 +1,89 @@
+#!/bin/bash
+sudo echo 'Beginning dependency install'
+
+# Array of repository URLs
+repos=(
+  "https://github.com/DockrManhattn/ad-unauthed.git"
+  "https://github.com/DockrManhattn/ad-authed.git"
+  "https://github.com/DockrManhattn/webscan.git"
+  "https://github.com/DockrManhattn/netscan.git"
+  "https://github.com/DockrManhattn/nxcscan.git"
+  "https://github.com/DockrManhattn/shells.git"
+)
+
+# List of repos with shell script setup files
+repos_with_shellscript_setup=(
+  "netscan"
+)
+
+# List of repos with Python script setup files
+repos_with_python_setup=(
+  "ad-unauthed"
+  "ad-authed"
+  "webscan"
+  "nxcscan"
+  "shells"
+)
+
+# Directory to store cloned repositories
+output_dir="apps"
+mkdir -p "$output_dir"
+
+# Store the current directory
+current_dir=$(pwd)
+
+# Clone each repository
+for repo in "${repos[@]}"; do
+  echo "Cloning $repo..."
+  git clone "$repo" "$output_dir/$(basename "$repo" .git)"
+  echo "Done."
+done
+
+echo "All repositories have been cloned into the '$output_dir' directory."
+
+# Run setup.sh for repos with shell script setup files
+for repo in "${repos_with_shellscript_setup[@]}"; do
+  repo_dir="$output_dir/$repo"
+  if [ -d "$repo_dir" ]; then
+    setup_script="$repo_dir/setup.sh"
+    if [ -f "$setup_script" ]; then
+      echo "Running setup.sh for $repo..."
+      cd "$repo_dir" && bash setup.sh
+      cd "$current_dir"  # Return to the original directory
+      echo "Setup completed for $repo."
+    else
+      echo "No setup.sh found in $repo_dir."
+    fi
+  else
+    echo "Repository $repo not found in $output_dir."
+  fi
+done
+
+# Run setup.py for repos with Python script setup files
+for repo in "${repos_with_python_setup[@]}"; do
+  repo_dir="$output_dir/$repo"
+  if [ -d "$repo_dir" ]; then
+    setup_script="$repo_dir/setup.py"
+    if [ -f "$setup_script" ]; then
+      echo "Running setup.py for $repo..."
+      cd "$repo_dir" && python3 setup.py install
+      cd "$current_dir"  # Return to the original directory
+      echo "Setup completed for $repo."
+    else
+      echo "No setup.py found in $repo_dir."
+    fi
+  else
+    echo "Repository $repo not found in $output_dir."
+  fi
+done
+
+# Source the correct rc file based on the shell
+if [[ "$SHELL" == *"bash"* ]]; then
+  echo "Sourcing ~/.bashrc"
+  source ~/.bashrc
+elif [[ "$SHELL" == *"zsh"* ]]; then
+  echo "Sourcing ~/.zshrc"
+  source ~/.zshrc
+else
+  echo "Unknown shell. Not sourcing any rc file."
+fi
