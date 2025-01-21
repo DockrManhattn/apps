@@ -9,6 +9,7 @@ repos=(
   "https://github.com/DockrManhattn/netscan.git"
   "https://github.com/DockrManhattn/nxcscan.git"
   "https://github.com/DockrManhattn/shells.git"
+  "https://github.com/DockrManhattn/pew.git"
 )
 
 # List of repos with shell script setup files
@@ -23,6 +24,7 @@ repos_with_python_setup=(
   "webscan"
   "nxcscan"
   "shells"
+  "pew"
 )
 
 # Directory to store cloned repositories
