@@ -6,12 +6,12 @@ repos=(
   "https://github.com/DockrManhattn/ad-unauthed.git"
   "https://github.com/DockrManhattn/ad-authed.git"
   "https://github.com/DockrManhattn/webscan.git"
-  "https://github.com/DockrManhattn/netscan.git"
-  "https://github.com/DockrManhattn/nxcscan.git"
   "https://github.com/DockrManhattn/ligolo.git"
   "https://github.com/DockrManhattn/pew.git"
   "https://github.com/DockrManhattn/pel.git"
   "https://github.com/DockrManhattn/shells.git"
+  "https://github.com/DockrManhattn/netscan.git"
+  "https://github.com/DockrManhattn/nxcscan.git"
 )
 
 # List of repos with shell script setup files
@@ -24,11 +24,11 @@ repos_with_python_setup=(
   "ad-unauthed"
   "ad-authed"
   "webscan"
-  "nxcscan"
   "ligolo"
   "pew"
   "pel"
   "shells"
+  "nxcscan"
 )
 
 # Directory to store cloned repositories
