@@ -8,6 +8,7 @@ repos=(
   "https://github.com/DockrManhattn/webscan.git"
   "https://github.com/DockrManhattn/ligolo.git"
   "https://github.com/DockrManhattn/ws.git"
+  "https://github.com/DockrManhattn/fix.git"
   "https://github.com/DockrManhattn/binaries.git"
   "https://github.com/DockrManhattn/pew.git"
   "https://github.com/DockrManhattn/pel.git"
@@ -18,6 +19,7 @@ repos=(
 
 # List of repos with shell script setup files
 repos_with_shellscript_setup=(
+  "fix"
   "netscan"
 )
 
