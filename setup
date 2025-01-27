@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo echo 'Beginning dependency install'
+sudo echo 'Beginning application install'
 
 # Array of repository URLs
 repos=(
@@ -85,13 +85,22 @@ for repo in "${repos_with_python_setup[@]}"; do
   fi
 done
 
-# Source the correct rc file based on the shell
+# Source the correct rc file based on the shell and display the final message
 if [[ "$SHELL" == *"bash"* ]]; then
   echo "Sourcing ~/.bashrc"
   source ~/.bashrc
+  shell_rc="~/.bashrc"
 elif [[ "$SHELL" == *"zsh"* ]]; then
   echo "Sourcing ~/.zshrc"
   source ~/.zshrc
+  shell_rc="~/.zshrc"
 else
   echo "Unknown shell. Not sourcing any rc file."
+  shell_rc=""
+fi
+
+# Print the final message if the shell was determined
+echo "Throughout the setup process, we have added a few aliases to your rc file, so be sure to source it, or restart your terminal for optimal results."
+if [[ -n "$shell_rc" ]]; then
+  echo -e "\033[33m    source $shell_rc\033[0m"
 fi
